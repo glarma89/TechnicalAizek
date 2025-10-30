@@ -45,13 +45,23 @@ pool.connect((err, client, release) => {
 // ----------------------------------------------------
 
 // Маршрут для получения всех пользователей из БД
-app.get('/api/users', async (req, res) => {
+// app.get('/api/users', async (req, res) => {
+//   try {
+//     const result = await pool.query('SELECT * FROM users');
+//     res.json(result.rows);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Server Error');
+//   }
+// });
+
+app.get('/test-db', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
+    const result = await pool.query('SELECT NOW() AS server_time;');
+    res.json(result.rows[0]);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Server Error');
+    res.status(500).json({ error: err.message });
   }
 });
 
