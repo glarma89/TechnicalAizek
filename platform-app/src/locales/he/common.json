@@ -1,0 +1,5 @@
+{
+  "title": "ברוך הבא",
+  "hello": "שלום, {{name}}!",
+  "inbox": "{count, plural, one {# הודעה} other {# הודעות}}"
+}

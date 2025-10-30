@@ -1,0 +1,5 @@
+{
+  "title": "Welcome",
+  "hello": "Hello, {{name}}!",
+  "inbox": "{count, plural, one {# message} other {# messages}}"
+}
