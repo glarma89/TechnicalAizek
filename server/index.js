@@ -55,20 +55,34 @@ pool.connect((err, client, release) => {
 //   }
 // });
 
-app.get('/test-db', async (req, res) => {
+app.get('/users', async (req, res) => {
   try {
-    const result = await pool.query('SELECT NOW() AS server_time;');
-    res.json(result.rows[0]);
+    const { rows } = await pool.query(
+      'SELECT id, email, full_name, created_at FROM public.users ORDER BY id;'
+    );
+    res.json(rows); // <-- Браузер получит чистый JSON
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
 
+//connection test
+
+// app.get('/test-db', async (req, res) => {
+//   try {
+//     const result = await pool.query('SELECT NOW() AS server_time;');
+//     res.json(result.rows[0]);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 // ----------------------------------------------------
 // 2.3. Запуск сервера
 // ----------------------------------------------------
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`HTTP: http://localhost:${port}`);
 });

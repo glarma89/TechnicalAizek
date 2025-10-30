@@ -184,11 +184,13 @@ export default function App() {
         case 'dueDate':
           return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
         case 'priority':
-          const priorityOrder = { high: 0, medium: 1, low: 2 };
-          return priorityOrder[a.priority] - priorityOrder[b.priority];
+          // const priorityOrder = { high: 0, medium: 1, low: 2 };
+          { const priorityOrder = { high: 0, medium: 1, low: 2 };
+          return priorityOrder[a.priority] - priorityOrder[b.priority]; }
         case 'status':
-          const statusOrder = { 'in-progress': 0, 'review': 1, 'todo': 2, 'completed': 3 };
-          return statusOrder[a.status] - statusOrder[b.status];
+          // const statusOrder = { 'in-progress': 0, 'review': 1, 'todo': 2, 'completed': 3 };
+          { const statusOrder = { 'in-progress': 0, 'review': 1, 'todo': 2, 'completed': 3 };
+          return statusOrder[a.status] - statusOrder[b.status]; }
         case 'title':
           return a.title.localeCompare(b.title);
         default:
