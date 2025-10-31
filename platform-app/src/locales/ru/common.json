@@ -35,6 +35,17 @@
     "taskTitle": "Название задачи",
     "description": "Описание",
     "totalTasks": "Всего задач",
-    "overdue": "Просроченных"
+    "overdue": "Просроченных",
+    "websiteRedesign": "Редизайн сайта",
+    "mobileApp": "Мобильное приложение",
+    "marketingCampaign": "Маркетинговая кампания",
+    "productLaunch": "Запуск продукта",
+
+    "enterTaskTitle": "Введите название задачи...",
+    "enterTaskDescription": "Введите описание задачи...",
+    "tagExamples": "дизайн, срочно, обзор...",
+    "searchTasks": "Поиск задачи..."
+    
+    
     
 }

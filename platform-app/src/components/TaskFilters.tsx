@@ -55,7 +55,7 @@ const { t } = useTranslation()
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
             type="text"
-            placeholder="Search tasks..."
+            placeholder={t('common:searchTasks')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             className="pl-10"
@@ -71,7 +71,7 @@ const { t } = useTranslation()
       <div className="flex items-center gap-3 flex-wrap">
         <Select value={statusFilter} onValueChange={onStatusFilterChange}>
           <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="Status" />
+            <SelectValue placeholder={t('common:status')} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('common:allStatus')}</SelectItem>
@@ -84,7 +84,7 @@ const { t } = useTranslation()
 
         <Select value={priorityFilter} onValueChange={onPriorityFilterChange}>
           <SelectTrigger className="w-[140px]">
-            <SelectValue placeholder="Priority" />
+            <SelectValue placeholder={t('common:priority')} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">{t('common:allPriority')}</SelectItem>

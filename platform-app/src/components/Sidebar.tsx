@@ -53,7 +53,7 @@ export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarP
         {/* Projects Section */}
         <div className="pt-6">
           <div className="flex items-center justify-between px-4 py-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">Projects</span>
+            <span className="text-xs text-gray-500 uppercase tracking-wider">{t('common:projects')}</span>
             <Button variant="ghost" size="icon" className="h-6 w-6">
               <Plus className="w-4 h-4" />
             </Button>

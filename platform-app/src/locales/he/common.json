@@ -35,7 +35,18 @@
     "taskTitle": "כותרת המשימה",
     "description": "תאור",
     "totalTasks": "סך כל המשימות",
-    "overdue": "איחור במועד"
+    "overdue": "איחור במועד",
+    "websiteRedesign": "עיצוב מחדש של אתר אינטרנט",
+    "mobileApp": "אפליקציה לנייד",
+    "marketingCampaign": "קמפיין שיווקי",
+    "productLaunch": "השקת מוצר",
+
+    "enterTaskTitle": "...הזן את כותרת המשימה",
+    "enterTaskDescription": "...הזן תיאור משימה",
+    "tagExamples": "...עיצוב, דחוף, סקירה",
+    "searchTasks": "...חיפוש משימות"
+    
+    
     
  
 }

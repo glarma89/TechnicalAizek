@@ -8,12 +8,7 @@ import { Task, Project } from './types/task';
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './components/LanguageSwitcher'
 
-const initialProjects: Project[] = [
-  { id: '1', name: 'Website Redesign', color: 'bg-purple-500', taskCount: 12 },
-  { id: '2', name: 'Mobile App', color: 'bg-blue-500', taskCount: 8 },
-  { id: '3', name: 'Marketing Campaign', color: 'bg-green-500', taskCount: 15 },
-  { id: '4', name: 'Product Launch', color: 'bg-orange-500', taskCount: 6 },
-];
+
 
 const initialTasks: Task[] = [
   {
@@ -139,6 +134,13 @@ export default function App() {
   const [sortBy, setSortBy] = useState('dueDate');
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const { t } = useTranslation()
+
+  const initialProjects: Project[] = [
+  { id: '1', name: t('common:websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
+  { id: '2', name: t('common:mobileApp'), color: 'bg-blue-500', taskCount: 8 },
+  { id: '3', name: t('common:marketingCampaign'), color: 'bg-green-500', taskCount: 15 },
+  { id: '4', name: t('common:productLaunch'), color: 'bg-orange-500', taskCount: 6 },
+];
 
   const handleStatusChange = (taskId: string, completed: boolean) => {
     setTasks((prevTasks) =>

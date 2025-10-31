@@ -72,7 +72,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
             <Label htmlFor="title">{t('common:taskTitle')}</Label>
             <Input
               id="title"
-              placeholder="Enter task title..."
+              placeholder={t('common:enterTaskTitle')}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -82,7 +82,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
             <Label htmlFor="description">{t('common:description')}</Label>
             <Textarea
               id="description"
-              placeholder="Enter task description..."
+              placeholder={t('common:enterTaskDescription')}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
@@ -134,7 +134,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
             <Label htmlFor="tags">{t('common:tags')}</Label>
             <Input
               id="tags"
-              placeholder="design, urgent, review..."
+              placeholder={t('common:tagExamples')}
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />

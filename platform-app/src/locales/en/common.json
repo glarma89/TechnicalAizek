@@ -20,8 +20,6 @@
   "high": "High",
   "sortBy": "Sort By",
   "dueDate": "Due Date",
-  "priority": "Priority",
-  "status": "Status",
     "title": "Title",
 
     "edit": "Edit",
@@ -36,10 +34,23 @@
     "taskTitle": "Task Title",
     "description": "Description",
     "totalTasks": "Total Tasks",
-    "overdue": "Overdue"
+    "overdue": "Overdue",
+    "websiteRedesign": "Website Redesign",
+    "mobileApp": "Mobile App",
+    "marketingCampaign": "Marketing Campaign",
+    "productLaunch": "Product Launch",
+    
+    "enterTaskTitle": "Enter task title...",
+    "enterTaskDescription": "Enter task description...",
+    "tagExamples": "design, urgent, review...",
+    "searchTasks": "Search tasks...",
+    "status": "Status",
+    "priority": "Priority"
     
   
-            
+        
+        
+
     
 
 }
