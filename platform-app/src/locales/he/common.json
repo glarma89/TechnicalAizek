@@ -1,5 +1,27 @@
 {
-  "title": "ברוך הבא",
+  "greeting": "ברוך הבא",
   "hello": "שלום, {{name}}!",
-  "inbox": "{count, plural, one {# הודעה} other {# הודעות}}"
+  "inbox": "{count, plural, one {# הודעה} other {# הודעות}}",
+  "myTasks": "המשימות שלי",
+  "dashboard": "לוח מחוונים",
+  "projects": "פרויקטים",
+   "team": "קבוצה",
+   "textManage": "ניהול וארגון המשימות היומיומיות שלך",
+   "noTasks":"לא נמצאו משימות",
+   "allProjects":"כל הפרויקטים",
+   "allStatus": "כל הסטטוסים",
+    "toDo": "רשימת מטלות",
+    "inProgress": "בתהליך",
+    "review": "סקירה",
+    "completed": "הושלם",
+    "allPriority": "כל העדיפויות",
+    "low": "נמוך",
+    "medium": "בינוני",
+    "high": "גבוה",
+    "sortBy": "מיין לפי",
+    "dueDate": "לפי תאריך",
+    "priority": "עדיפות",
+    "status": "סטטוס",
+    "title": "כותרת"
+ 
 }

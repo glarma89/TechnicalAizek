@@ -1,5 +1,28 @@
 {
-  "title": "Welcome",
+  "greeting": "Welcome",
   "hello": "Hello, {{name}}!",
-  "inbox": "{count, plural, one {# message} other {# messages}}"
+  "inbox": "{count, plural, one {# message} other {# messages}}",
+  "myTasks": "My Tasks",
+  "dashboard": "Dashboard",
+  "projects": "Projects",
+  "team": "Team",
+  "textManage": "Manage and organize your daily tasks",
+  "noTasks": "No tasks found",
+  "allProjects": "All Projects",
+  "allStatus": "All Status",
+  "toDo": "All Status",
+  "inProgress": "All Status",
+  "review": "Review",
+  "completed": "Completed",
+  "allPriority": "All Priority",
+  "low": "Low",
+  "medium": "Medium",
+  "high": "High",
+  "sortBy": "Sort By",
+  "dueDate": "Due Date",
+  "priority": "Priority",
+  "status": "Status",
+    "title": "Title"
+  
+
 }

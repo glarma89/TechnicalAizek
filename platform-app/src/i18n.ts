@@ -1,21 +1,22 @@
+// src/i18n.ts
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import ICU from 'i18next-icu'
+import ICU from 'i18next-icu'                 // <-- класс
 
 // JSON-ресурсы
 import en from './locales/en/common.json'
 import ru from './locales/ru/common.json'
 import he from './locales/he/common.json'
 
-// Укажем список поддерживаемых lng как литеральный union
+// Языки проекта
 export type AppLang = 'en' | 'ru' | 'he'
 const isAppLang = (x: string): x is AppLang => ['en', 'ru', 'he'].includes(x)
 
-// Простейшее хранение выбора языка
+// Читаем выбранный язык из localStorage
 const saved = typeof window !== 'undefined' ? window.localStorage.getItem('lng') : null
 const initialLng: AppLang = saved && isAppLang(saved) ? saved : 'en'
 
-// Проставление dir/lang для RTL/LTR
+// Проставляем dir/lang для RTL/LTR
 export const applyDir = (lng: AppLang) => {
   const isRTL = lng === 'he'
   const html = document.documentElement
@@ -23,7 +24,7 @@ export const applyDir = (lng: AppLang) => {
   html.setAttribute('dir', isRTL ? 'rtl' : 'ltr')
 }
 
-// Типизированные ресурсы
+// Ресурсы
 export const resources = {
   en: { common: en },
   ru: { common: ru },
@@ -31,8 +32,7 @@ export const resources = {
 } as const
 
 i18n
-  // @ts-expect-error: типы для i18next-icu не детализированы, но плагин работает корректно
-  .use(ICU())
+  .use(new ICU())                              // <-- ВАЖНО: экземпляр класса
   .use(initReactI18next)
   .init({
     lng: initialLng,

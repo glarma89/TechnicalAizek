@@ -2,6 +2,7 @@ import { LayoutDashboard, CheckSquare, Users, Settings, Plus, FolderKanban } fro
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Project } from '../types/task.tsx';
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
   projects: Project[];
@@ -10,11 +11,13 @@ interface SidebarProps {
 }
 
 export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarProps) {
+  const { t } = useTranslation()
+
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', active: false },
-    { icon: CheckSquare, label: 'My Tasks', active: true },
-    { icon: FolderKanban, label: 'Projects', active: false },
-    { icon: Users, label: 'Team', active: false },
+    { icon: LayoutDashboard, label: t('dashboard'), active: false },
+    { icon: CheckSquare, label: t('myTasks'), active: true },
+    { icon: FolderKanban, label: t('projects'), active: false },
+    { icon: Users, label: t('team'), active: false },
   ];
 
   return (
@@ -65,7 +68,7 @@ export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarP
               }`}
             >
               <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-              <span className="flex-1 text-left">All Projects</span>
+              <span className="flex-1 text-left">{t('common:allProjects')}</span>
             </button>
             {projects.map((project) => (
               <button

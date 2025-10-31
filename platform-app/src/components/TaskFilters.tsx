@@ -18,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import { useTranslation } from 'react-i18next';
 
 interface TaskFiltersProps {
   searchQuery: string;
@@ -42,6 +43,10 @@ export function TaskFilters({
   onSortByChange,
   onAddTask,
 }: TaskFiltersProps) {
+
+const { t } = useTranslation()
+
+
   return (
     <div className="space-y-4">
       {/* Search and Actions */}
@@ -69,11 +74,11 @@ export function TaskFilters({
             <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
-            <SelectItem value="todo">To Do</SelectItem>
-            <SelectItem value="in-progress">In Progress</SelectItem>
-            <SelectItem value="review">Review</SelectItem>
-            <SelectItem value="completed">Completed</SelectItem>
+            <SelectItem value="all">{t('common:allStatus')}</SelectItem>
+            <SelectItem value="todo">{t('common:toDo')}</SelectItem>
+            <SelectItem value="in-progress">{t('common:inProgress')}</SelectItem>
+            <SelectItem value="review">{t('common:review')}</SelectItem>
+            <SelectItem value="completed">{t('common:completed')}</SelectItem>
           </SelectContent>
         </Select>
 
@@ -82,32 +87,32 @@ export function TaskFilters({
             <SelectValue placeholder="Priority" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Priority</SelectItem>
-            <SelectItem value="low">Low</SelectItem>
-            <SelectItem value="medium">Medium</SelectItem>
-            <SelectItem value="high">High</SelectItem>
+            <SelectItem value="all">{t('common:allPriority')}</SelectItem>
+            <SelectItem value="low">{t('common:low')}</SelectItem>
+            <SelectItem value="medium">{t('common:medium')}</SelectItem>
+            <SelectItem value="high">{t('common:high')}</SelectItem>
           </SelectContent>
         </Select>
 
         <DropdownMenu>
           <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
             <SlidersHorizontal className="w-4 h-4 mr-2" />
-            Sort By
+            {t('common:sortBy')}
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('common:sortBy')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => onSortByChange('dueDate')}>
-              Due Date
+              {t('common:dueDate')}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onSortByChange('priority')}>
-              Priority
+              {t('common:priority')}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onSortByChange('status')}>
-              Status
+              {t('common:status')}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onSortByChange('title')}>
-              Title
+              {t('common:title')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

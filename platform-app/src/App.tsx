@@ -5,6 +5,8 @@ import { TaskFilters } from './components/TaskFilters';
 import { TaskStats } from './components/TaskStats';
 import { AddTaskDialog } from './components/AddTaskDialog';
 import { Task, Project } from './types/task';
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './components/LanguageSwitcher'
 
 const initialProjects: Project[] = [
   { id: '1', name: 'Website Redesign', color: 'bg-purple-500', taskCount: 12 },
@@ -136,6 +138,7 @@ export default function App() {
   const [priorityFilter, setPriorityFilter] = useState('all');
   const [sortBy, setSortBy] = useState('dueDate');
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
+  const { t } = useTranslation()
 
   const handleStatusChange = (taskId: string, completed: boolean) => {
     setTasks((prevTasks) =>
@@ -214,6 +217,15 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-gray-50">
+      <div style={{ padding: 16 }}>
+        <LanguageSwitcher />
+
+        <h1>{t('common:title')}</h1>
+
+        <p>{t('common:hello', { name: 'Dasha' })}</p>
+        <p>{t('common:inbox', { count: 1 })}</p>
+        <p>{t('common:inbox', { count: 5 })}</p>
+      </div>
       <Sidebar
         projects={initialProjects}
         selectedProject={selectedProject}
@@ -224,8 +236,8 @@ export default function App() {
         <div className="p-8 max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-6">
-            <h1 className="text-gray-900 mb-2">My Tasks</h1>
-            <p className="text-gray-500">Manage and organize your daily tasks</p>
+            <h1 className="text-gray-900 mb-2">{t('common:myTasks')}</h1>
+            <p className="text-gray-500">{t('common:textManage')}</p>
           </div>
 
           {/* Stats */}
@@ -252,7 +264,7 @@ export default function App() {
           <div className="space-y-3">
             {filteredAndSortedTasks.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-500">No tasks found</p>
+                <p className="text-gray-500">{t('common:noTasks')}</p>
               </div>
             ) : (
               filteredAndSortedTasks.map((task) => (
