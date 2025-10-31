@@ -10,8 +10,8 @@
   "noTasks": "No tasks found",
   "allProjects": "All Projects",
   "allStatus": "All Status",
-  "toDo": "All Status",
-  "inProgress": "All Status",
+  "toDo": "To Do",
+  "inProgress": "In Progress",
   "review": "Review",
   "completed": "Completed",
   "allPriority": "All Priority",
@@ -27,7 +27,17 @@
     "edit": "Edit",
     "duplicate": "Duplicate",
     "delete": "Delete",
-    "progress": "Progress"
+    "progress": "Progress",
+    "tags": "Tags (comma separated)",
+    "cancel": "Cancel",
+    "addTask": "Add Task",
+    "addNewTask": "Add New Task",
+    "createNewTask": "Create a new task by filling in the details below.",
+    "taskTitle": "Task Title",
+    "description": "Description"
+    
   
+            
+    
 
 }

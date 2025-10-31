@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from './ui/select';
 import { Task, TaskPriority, TaskStatus } from '../types/task';
+import { useTranslation } from 'react-i18next';
 
 interface AddTaskDialogProps {
   open: boolean;
@@ -26,6 +27,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
   const [status, setStatus] = useState<TaskStatus>('todo');
   const [dueDate, setDueDate] = useState('');
   const [tags, setTags] = useState('');
+  const { t } = useTranslation()
 
   const handleSubmit = () => {
     if (!title.trim()) return;
@@ -60,14 +62,14 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>Add New Task</DialogTitle>
+          <DialogTitle>{t('common:addNewTask')}</DialogTitle>
           <DialogDescription>
-            Create a new task by filling in the details below.
+            {t('common:createNewTask')}
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="title">Task Title</Label>
+            <Label htmlFor="title">{t('common:taskTitle')}</Label>
             <Input
               id="title"
               placeholder="Enter task title..."
@@ -77,7 +79,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description">{t('common:description')}</Label>
             <Textarea
               id="description"
               placeholder="Enter task description..."
@@ -89,37 +91,37 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="priority">Priority</Label>
-              <Select value={priority} onValueChange={(value) => setPriority(value as TaskPriority)}>
+              <Label htmlFor="priority">{t('common:priority')}</Label>
+              <Select value={priority} onValueChange={(value: TaskPriority) => setPriority(value)}>
                 <SelectTrigger id="priority">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="low">Low</SelectItem>
-                  <SelectItem value="medium">Medium</SelectItem>
-                  <SelectItem value="high">High</SelectItem>
+                  <SelectItem value="low">{t('common:low')}</SelectItem>
+                  <SelectItem value="medium">{t('common:medium')}</SelectItem>
+                  <SelectItem value="high">{t('common:high')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="status">Status</Label>
-              <Select value={status} onValueChange={(value) => setStatus(value as TaskStatus)}>
+              <Label htmlFor="status">{t('common:status')}</Label>
+              <Select value={status} onValueChange={(value: TaskStatus) => setStatus(value)}>
                 <SelectTrigger id="status">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="todo">To Do</SelectItem>
-                  <SelectItem value="in-progress">In Progress</SelectItem>
-                  <SelectItem value="review">Review</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="todo">{t('common:toDo')}</SelectItem>
+                  <SelectItem value="in-progress">{t('common:inProgress')}</SelectItem>
+                  <SelectItem value="review">{t('common:review')}</SelectItem>
+                  <SelectItem value="completed">{t('common:completed')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="dueDate">Due Date</Label>
+            <Label htmlFor="dueDate">{t('common:dueDate')}</Label>
             <Input
               id="dueDate"
               type="date"
@@ -129,7 +131,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="tags">Tags (comma separated)</Label>
+            <Label htmlFor="tags">{t('common:tags')}</Label>
             <Input
               id="tags"
               placeholder="design, urgent, review..."
@@ -140,10 +142,10 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancel
+            {t('common:cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-purple-600 hover:bg-purple-700">
-            Add Task
+            {t('common:addTask')}
           </Button>
         </DialogFooter>
       </DialogContent>
