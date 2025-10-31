@@ -34,7 +34,9 @@
     "addNewTask": "Add New Task",
     "createNewTask": "Create a new task by filling in the details below.",
     "taskTitle": "Task Title",
-    "description": "Description"
+    "description": "Description",
+    "totalTasks": "Total Tasks",
+    "overdue": "Overdue"
     
   
             

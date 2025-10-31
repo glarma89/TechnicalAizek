@@ -33,7 +33,9 @@
     "addNewTask": "להוסיף את משימה חדשה",
     "createNewTask": ".צור משימה חדשה על ידי מילוי הפרטים למטה",
     "taskTitle": "כותרת המשימה",
-    "description": "תאור"
+    "description": "תאור",
+    "totalTasks": "סך כל המשימות",
+    "overdue": "איחור במועד"
     
  
 }

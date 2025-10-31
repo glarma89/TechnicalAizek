@@ -63,7 +63,7 @@ const { t } = useTranslation()
         </div>
         <Button onClick={onAddTask} className="bg-purple-600 hover:bg-purple-700">
           <Plus className="w-4 h-4 mr-2" />
-          Add Task
+          {t('common:addTask')}
         </Button>
       </div>
 

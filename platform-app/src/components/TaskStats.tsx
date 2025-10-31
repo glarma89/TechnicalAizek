@@ -1,5 +1,6 @@
 import { CheckCircle2, Clock, AlertCircle, ListTodo } from 'lucide-react';
 import { Card } from './ui/card';
+import { useTranslation } from 'react-i18next';
 
 interface TaskStatsProps {
   total: number;
@@ -9,30 +10,33 @@ interface TaskStatsProps {
 }
 
 export function TaskStats({ total, completed, inProgress, overdue }: TaskStatsProps) {
+
+const { t } = useTranslation()
+
   const stats = [
     {
-      label: 'Total Tasks',
+      label: t('common:totalTasks'),
       value: total,
       icon: ListTodo,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
-      label: 'Completed',
+      label: t('common:completed'),
       value: completed,
       icon: CheckCircle2,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
-      label: 'In Progress',
+      label: t('common:inProgress'),
       value: inProgress,
       icon: Clock,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
     },
     {
-      label: 'Overdue',
+      label: t('common:overdue'),
       value: overdue,
       icon: AlertCircle,
       color: 'text-red-600',
