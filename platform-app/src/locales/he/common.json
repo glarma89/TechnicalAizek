@@ -22,6 +22,10 @@
     "dueDate": "לפי תאריך",
     "priority": "עדיפות",
     "status": "סטטוס",
-    "title": "כותרת"
+    "title": "כותרת",
+    "edit": "לערוך",
+    "duplicate": "לשכפל",
+    "delete": "לבטל",
+    "progress": "התקדמות"
  
 }

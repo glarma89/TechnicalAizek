@@ -22,7 +22,12 @@
   "dueDate": "Due Date",
   "priority": "Priority",
   "status": "Status",
-    "title": "Title"
+    "title": "Title",
+
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "progress": "Progress"
   
 
 }

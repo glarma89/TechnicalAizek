@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
+import { useTranslation } from 'react-i18next';
 
 interface TaskCardProps {
   task: Task;
@@ -38,6 +39,9 @@ const statusLabels = {
 };
 
 export function TaskCard({ task, onStatusChange }: TaskCardProps) {
+
+const { t } = useTranslation()
+
   return (
     <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
       <div className="space-y-3">
@@ -63,9 +67,9 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
               <MoreVertical className="w-4 h-4 text-gray-400" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Duplicate</DropdownMenuItem>
-              <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+              <DropdownMenuItem>{t('common:edit')}</DropdownMenuItem>
+              <DropdownMenuItem>{t('common:duplicate')}</DropdownMenuItem>
+              <DropdownMenuItem className="text-red-600">{t('common:delete')}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -85,7 +89,7 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
         {task.progress > 0 && task.status !== 'completed' && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs text-gray-500">
-              <span>Progress</span>
+              <span>{t('common:progress')}</span>
               <span>{task.progress}%</span>
             </div>
             <Progress value={task.progress} className="h-2" />
