@@ -13,93 +13,31 @@ import {
 } from './ui/dropdown-menu';
 import { useTranslation } from 'react-i18next';
 
-/** Приоритеты */
-const priorityColors: Record<string, string> = {
+
+
+const priorityColors = {
   low: 'bg-green-100 text-green-700 border-green-200',
   medium: 'bg-yellow-100 text-yellow-700 border-yellow-200',
   high: 'bg-red-100 text-red-700 border-red-200',
 };
 
-/** В приложении встречаются два формата статуса:
- *  - из БД/TS: 'todo' | 'in_progress' | 'done'
- *  - в UI-карте: 'todo' | 'in-progress' | 'review' | 'completed'
- *  Сведём 'in_progress' -> 'in-progress', 'done' -> 'completed'
- */
-const statusAlias: Record<string, 'todo' | 'in-progress' | 'review' | 'completed'> = {
-  'todo': 'todo',
-  'in_progress': 'in-progress',
-  'in-progress': 'in-progress',
-  'review': 'review',
-  'completed': 'completed',
-  'done': 'completed',
-};
-
-const statusColors: Record<'todo'|'in-progress'|'review'|'completed', string> = {
+const statusColors = {
   'todo': 'bg-gray-100 text-gray-700 border-gray-200',
   'in-progress': 'bg-blue-100 text-blue-700 border-blue-200',
   'review': 'bg-purple-100 text-purple-700 border-purple-200',
   'completed': 'bg-green-100 text-green-700 border-green-200',
 };
 
-const statusLabels: Record<'todo'|'in-progress'|'review'|'completed', string> = {
+const statusLabels = {
   'todo': 'To Do',
   'in-progress': 'In Progress',
   'review': 'Review',
   'completed': 'Completed',
 };
 
-/** Нормализация задачи — дефолты + безопасные типы */
-function normalizeTask(task: TaskCardProps['task']) {
-  const title = task?.title ?? '';
-  const description = task?.description ?? '';
-  const priority = task?.priority ?? 'medium';
-  const uiStatus = statusAlias[task?.status ?? 'todo'] ?? 'todo';
-
-  const tags = Array.isArray(task?.tags) ? task!.tags : [];
-  const progress = typeof task?.progress === 'number' ? task!.progress : 0;
-
-  const assignee = task?.assignee ?? { name: 'Unassigned', avatar: '' };
-  const assigneeName = typeof assignee.name === 'string' ? assignee.name : 'Unassigned';
-  const assigneeAvatar = typeof assignee.avatar === 'string' ? assignee.avatar : '';
-
-  const dueDateStr = task?.dueDate ?? '';
-  const due = dueDateStr ? new Date(dueDateStr) : null;
-  const dueLabel =
-    due && !isNaN(due.getTime())
-      ? due.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-      : '—';
-
-  return {
-    id: String(task?.id ?? ''),
-    title,
-    description,
-    priority,
-    uiStatus,         // нормализованный статус для цветов/лейблов
-    rawStatus: task?.status ?? 'todo', // если нужно отправлять обратно
-    tags,
-    progress,
-    assigneeName,
-    assigneeAvatar,
-    dueLabel,
-    dueISO: dueDateStr,
-  };
-}
-
 export function TaskCard({ task, onStatusChange }: TaskCardProps) {
-  const { t } = useTranslation('common');
 
-  const {
-    title,
-    description,
-    priority,
-    uiStatus,
-    //rawStatus,
-    tags,
-    progress,
-    assigneeName,
-    assigneeAvatar,
-    dueLabel,
-  } = normalizeTask(task);
+const { t } = useTranslation('common')
 
   return (
     <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
@@ -108,18 +46,16 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
         <div className="flex items-start justify-between gap-2">
           <div className="flex items-start gap-3 flex-1">
             <Checkbox
-              checked={uiStatus === 'completed'}
-              onCheckedChange={(checked: boolean) =>
-                onStatusChange(task.id, checked)
-              }
+              checked={task.status === 'completed'}
+              onCheckedChange={(checked: boolean) => onStatusChange(task.id, checked)}
               className="mt-1"
             />
             <div className="flex-1 min-w-0">
-              <h3 className={`text-gray-900 ${uiStatus === 'completed' ? 'line-through opacity-50' : ''}`}>
-                {title}
+              <h3 className={`text-gray-900 ${task.status === 'completed' ? 'line-through opacity-50' : ''}`}>
+                {task.title}
               </h3>
               <p className="text-sm text-gray-500 mt-1 line-clamp-2">
-                {description}
+                {task.description}
               </p>
             </div>
           </div>
@@ -136,9 +72,9 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
         </div>
 
         {/* Tags */}
-        {tags.length > 0 && (
+        {task.tags.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
+            {task.tags.map((tag) => (
               <Badge key={tag} variant="secondary" className="text-xs">
                 {tag}
               </Badge>
@@ -147,31 +83,31 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
         )}
 
         {/* Progress Bar */}
-        {progress > 0 && uiStatus !== 'completed' && (
+        {task.progress > 0 && task.status !== 'completed' && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs text-gray-500">
               <span>{t('progress')}</span>
-              <span>{progress}%</span>
+              <span>{task.progress}%</span>
             </div>
-            <Progress value={progress} className="h-2" />
+            <Progress value={task.progress} className="h-2" />
           </div>
         )}
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-2 border-t border-gray-100">
           <div className="flex items-center gap-3">
-            <Badge className={`text-xs ${priorityColors[priority] ?? ''}`} variant="outline">
-              {priority}
+            <Badge className={`text-xs ${priorityColors[task.priority]}`} variant="outline">
+              {task.priority}
             </Badge>
-            <Badge className={`text-xs ${statusColors[uiStatus]}`} variant="outline">
-              {statusLabels[uiStatus]}
+            <Badge className={`text-xs ${statusColors[task.status]}`} variant="outline">
+              {statusLabels[task.status]}
             </Badge>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 text-gray-400">
               <Calendar className="w-4 h-4" />
-              <span className="text-xs">{dueLabel}</span>
+              <span className="text-xs">{new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
             </div>
             <div className="flex items-center gap-1 text-gray-400">
               <MessageSquare className="w-4 h-4" />
@@ -182,8 +118,8 @@ export function TaskCard({ task, onStatusChange }: TaskCardProps) {
               <span className="text-xs">2</span>
             </div>
             <Avatar className="h-6 w-6">
-              <AvatarImage src={assigneeAvatar} />
-              <AvatarFallback>{(assigneeName || 'U').charAt(0)}</AvatarFallback>
+              <AvatarImage src={task.assignee.avatar} />
+              <AvatarFallback>{task.assignee.name.charAt(0)}</AvatarFallback>
             </Avatar>
           </div>
         </div>

@@ -22,6 +22,7 @@ import {
   //editTask 
 } from './store/taskSlice' // ###------------------------------------
 import { initialTasks } from './components/utils/initialTasks';
+import { getTasks, addTask } from "./api";
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -40,6 +41,10 @@ export default function App() {
       dispatch(fetchTasks())
     }, [dispatch])
 
+    useEffect(() => {
+    getTasks().then(setTasks).catch(console.error);
+    }, []);
+
   const initialProjects: Project[] = [
   { id: '1', name: t('websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
   { id: '2', name: t('mobileApp'), color: 'bg-blue-500', taskCount: 8 },
@@ -57,13 +62,28 @@ export default function App() {
     );
   };
 
-  const handleAddTask = (newTask: Omit<Task, 'id'>) => { // old --------------
-    const task: Task = {
-      ...newTask,
-      id: Date.now().toString(),
-    };
-    setTasks([task, ...tasks]);
-  };
+  const handleAddTask = async (newTask: Omit<Task, "id" | "created_at" | "updated_at">) => {
+  if (!newTask.title.trim()) return;
+  const createdTask: Task = await addTask(newTask);
+  setTasks((prev) => [createdTask, ...prev]);
+};
+
+  // const handleAddTask = async (newTask: Omit<Task, "id" >) => { // old --------------
+  //   const task: Task = {
+  //     ...newTask,
+  //     id: Date.now().toString(),
+  //   };
+  //   setTasks((prev) => [task, ...prev])
+  // };
+
+//   const handleAdd = async () => {
+//   if (!title.trim()) return;
+//   const newTask = await addTask(title);
+//   setTasks((prev) => [...prev, newTask]);
+//   setTitle("");
+// };
+
+
 
   // const handleAddTask = (newTask: Omit<Task, 'id'>) => {
 
