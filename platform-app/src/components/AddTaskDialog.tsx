@@ -27,7 +27,7 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
   const [status, setStatus] = useState<TaskStatus>('todo');
   const [dueDate, setDueDate] = useState('');
   const [tags, setTags] = useState('');
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   const handleSubmit = () => {
     if (!title.trim()) return;
@@ -62,27 +62,27 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>{t('common:addNewTask')}</DialogTitle>
+          <DialogTitle>{t('addNewTask')}</DialogTitle>
           <DialogDescription>
-            {t('common:createNewTask')}
+            {t('createNewTask')}
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <div className="space-y-2">
-            <Label htmlFor="title">{t('common:taskTitle')}</Label>
+            <Label htmlFor="title">{t('taskTitle')}</Label>
             <Input
               id="title"
-              placeholder={t('common:enterTaskTitle')}
+              placeholder={t('enterTaskTitle')}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">{t('common:description')}</Label>
+            <Label htmlFor="description">{t('description')}</Label>
             <Textarea
               id="description"
-              placeholder={t('common:enterTaskDescription')}
+              placeholder={t('enterTaskDescription')}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
@@ -91,37 +91,37 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="priority">{t('common:priority')}</Label>
+              <Label htmlFor="priority">{t('priority')}</Label>
               <Select value={priority} onValueChange={(value: TaskPriority) => setPriority(value)}>
                 <SelectTrigger id="priority">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="low">{t('common:low')}</SelectItem>
-                  <SelectItem value="medium">{t('common:medium')}</SelectItem>
-                  <SelectItem value="high">{t('common:high')}</SelectItem>
+                  <SelectItem value="low">{t('low')}</SelectItem>
+                  <SelectItem value="medium">{t('medium')}</SelectItem>
+                  <SelectItem value="high">{t('high')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="status">{t('common:status')}</Label>
+              <Label htmlFor="status">{t('status')}</Label>
               <Select value={status} onValueChange={(value: TaskStatus) => setStatus(value)}>
                 <SelectTrigger id="status">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="todo">{t('common:toDo')}</SelectItem>
-                  <SelectItem value="in-progress">{t('common:inProgress')}</SelectItem>
-                  <SelectItem value="review">{t('common:review')}</SelectItem>
-                  <SelectItem value="completed">{t('common:completed')}</SelectItem>
+                  <SelectItem value="todo">{t('toDo')}</SelectItem>
+                  <SelectItem value="in-progress">{t('inProgress')}</SelectItem>
+                  <SelectItem value="review">{t('review')}</SelectItem>
+                  <SelectItem value="completed">{t('completed')}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="dueDate">{t('common:dueDate')}</Label>
+            <Label htmlFor="dueDate">{t('dueDate')}</Label>
             <Input
               id="dueDate"
               type="date"
@@ -131,10 +131,10 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="tags">{t('common:tags')}</Label>
+            <Label htmlFor="tags">{t('tags')}</Label>
             <Input
               id="tags"
-              placeholder={t('common:tagExamples')}
+              placeholder={t('tagExamples')}
               value={tags}
               onChange={(e) => setTags(e.target.value)}
             />
@@ -142,10 +142,10 @@ export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogPr
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            {t('common:cancel')}
+            {t('cancel')}
           </Button>
           <Button onClick={handleSubmit} className="bg-purple-600 hover:bg-purple-700">
-            {t('common:addTask')}
+            {t('addTask')}
           </Button>
         </DialogFooter>
       </DialogContent>

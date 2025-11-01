@@ -7,6 +7,8 @@ import { AddTaskDialog } from './components/AddTaskDialog';
 import { Task, Project } from './types/task';
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './components/LanguageSwitcher'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 
 
@@ -133,13 +135,14 @@ export default function App() {
   const [priorityFilter, setPriorityFilter] = useState('all');
   const [sortBy, setSortBy] = useState('dueDate');
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
+  const dispatch = useDispatch<AppDispatch>()
 
   const initialProjects: Project[] = [
-  { id: '1', name: t('common:websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
-  { id: '2', name: t('common:mobileApp'), color: 'bg-blue-500', taskCount: 8 },
-  { id: '3', name: t('common:marketingCampaign'), color: 'bg-green-500', taskCount: 15 },
-  { id: '4', name: t('common:productLaunch'), color: 'bg-orange-500', taskCount: 6 },
+  { id: '1', name: t('websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
+  { id: '2', name: t('mobileApp'), color: 'bg-blue-500', taskCount: 8 },
+  { id: '3', name: t('marketingCampaign'), color: 'bg-green-500', taskCount: 15 },
+  { id: '4', name: t('productLaunch'), color: 'bg-orange-500', taskCount: 6 },
 ];
 
   const handleStatusChange = (taskId: string, completed: boolean) => {
@@ -222,11 +225,11 @@ export default function App() {
       <div style={{ padding: 16 }}>
         <LanguageSwitcher />
 
-        <h1>{t('common:title')}</h1>
+        <h1>{t('title')}</h1>
 
-        <p>{t('common:hello', { name: 'Dasha' })}</p>
-        <p>{t('common:inbox', { count: 1 })}</p>
-        <p>{t('common:inbox', { count: 5 })}</p>
+        <p>{t('hello', { name: 'Dasha' })}</p>
+        <p>{t('inbox', { count: 1 })}</p>
+        <p>{t('inbox', { count: 5 })}</p>
       </div>
       <Sidebar
         projects={initialProjects}
@@ -238,8 +241,8 @@ export default function App() {
         <div className="p-8 max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-6">
-            <h1 className="text-gray-900 mb-2">{t('common:myTasks')}</h1>
-            <p className="text-gray-500">{t('common:textManage')}</p>
+            <h1 className="text-gray-900 mb-2">{t('myTasks')}</h1>
+            <p className="text-gray-500">{t('textManage')}</p>
           </div>
 
           {/* Stats */}
@@ -266,7 +269,7 @@ export default function App() {
           <div className="space-y-3">
             {filteredAndSortedTasks.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-500">{t('common:noTasks')}</p>
+                <p className="text-gray-500">{t('noTasks')}</p>
               </div>
             ) : (
               filteredAndSortedTasks.map((task) => (

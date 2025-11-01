@@ -11,8 +11,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarProps) {
-  const { t } = useTranslation()
-
+  const { t } = useTranslation('common')
   const menuItems = [
     { icon: LayoutDashboard, label: t('dashboard'), active: false },
     { icon: CheckSquare, label: t('myTasks'), active: true },
@@ -53,7 +52,7 @@ export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarP
         {/* Projects Section */}
         <div className="pt-6">
           <div className="flex items-center justify-between px-4 py-2">
-            <span className="text-xs text-gray-500 uppercase tracking-wider">{t('common:projects')}</span>
+            <span className="text-xs text-gray-500 uppercase tracking-wider">{t('projects')}</span>
             <Button variant="ghost" size="icon" className="h-6 w-6">
               <Plus className="w-4 h-4" />
             </Button>
@@ -68,7 +67,7 @@ export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarP
               }`}
             >
               <div className="w-3 h-3 rounded-full bg-gray-400"></div>
-              <span className="flex-1 text-left">{t('common:allProjects')}</span>
+              <span className="flex-1 text-left">{t('allProjects')}</span>
             </button>
             {projects.map((project) => (
               <button

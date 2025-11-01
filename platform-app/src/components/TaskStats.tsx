@@ -11,32 +11,32 @@ interface TaskStatsProps {
 
 export function TaskStats({ total, completed, inProgress, overdue }: TaskStatsProps) {
 
-const { t } = useTranslation()
+const { t } = useTranslation('common')
 
   const stats = [
     {
-      label: t('common:totalTasks'),
+      label: t('totalTasks'),
       value: total,
       icon: ListTodo,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
-      label: t('common:completed'),
+      label: t('completed'),
       value: completed,
       icon: CheckCircle2,
       color: 'text-green-600',
       bgColor: 'bg-green-50',
     },
     {
-      label: t('common:inProgress'),
+      label: t('inProgress'),
       value: inProgress,
       icon: Clock,
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',
     },
     {
-      label: t('common:overdue'),
+      label: t('overdue'),
       value: overdue,
       icon: AlertCircle,
       color: 'text-red-600',
