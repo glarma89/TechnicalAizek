@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 //import { Task } from './types/task';
-import { Task, TaskState } from '../types/task';
+import { Task, TaskState } from '../types/interfaces';
 
 // export interface Task {
 //   id: number

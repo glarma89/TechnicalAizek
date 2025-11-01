@@ -1,13 +1,7 @@
 import { CheckCircle2, Clock, AlertCircle, ListTodo } from 'lucide-react';
 import { Card } from './ui/card';
 import { useTranslation } from 'react-i18next';
-
-interface TaskStatsProps {
-  total: number;
-  completed: number;
-  inProgress: number;
-  overdue: number;
-}
+import { TaskStatsProps } from '../types/interfaces';
 
 export function TaskStats({ total, completed, inProgress, overdue }: TaskStatsProps) {
 

@@ -4,7 +4,7 @@ import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Checkbox } from './ui/checkbox';
 import { Progress } from './ui/progress';
-import { Task } from '../types/task';
+import { TaskCardProps } from '../types/interfaces';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,10 +13,7 @@ import {
 } from './ui/dropdown-menu';
 import { useTranslation } from 'react-i18next';
 
-interface TaskCardProps {
-  task: Task;
-  onStatusChange: (taskId: string, completed: boolean) => void;
-}
+
 
 const priorityColors = {
   low: 'bg-green-100 text-green-700 border-green-200',

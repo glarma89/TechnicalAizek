@@ -19,18 +19,9 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { useTranslation } from 'react-i18next';
+import { TaskFiltersProps } from '../types/interfaces';
 
-interface TaskFiltersProps {
-  searchQuery: string;
-  onSearchChange: (query: string) => void;
-  statusFilter: string;
-  onStatusFilterChange: (status: string) => void;
-  priorityFilter: string;
-  onPriorityFilterChange: (priority: string) => void;
-  sortBy: string;
-  onSortByChange: (sortBy: string) => void;
-  onAddTask: () => void;
-}
+
 
 export function TaskFilters({
   searchQuery,
@@ -116,11 +107,6 @@ const { t } = useTranslation('common')
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-
-        {/* <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-xs hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2">
-          <Filter className="w-4 h-4 mr-2" />
-          More Filters
-        </button> */}
       </div>
     </div>
   );

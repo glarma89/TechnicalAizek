@@ -1,4 +1,4 @@
-import { Task } from '../../types/task';
+import { Task } from '../../types/interfaces';
 
 export const initialTasks: Task[] = [
   {

@@ -2519,3 +2519,73 @@ html {
     transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
   }
 }
+
+/*! tailwindcss v4.1.3 | MIT License | https://tailwindcss.com */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    /* ---------------------------------------------------- */
+    /* КОНТЕЙНЕР ФОРМЫ (.admin-login-container) */
+    /* Соответствует: display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f7f9; */
+    .admin-login-container {
+        @apply flex justify-center items-center min-h-screen bg-gray-50;
+    }
+
+    /* ---------------------------------------------------- */
+    /* ОСНОВНАЯ ФОРМА (.admin-login-form) */
+    /* Соответствует: background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; */
+    .admin-login-form {
+        @apply bg-white p-10 rounded-lg shadow-xl w-full max-w-md text-center;
+    }
+
+    /* Стиль для заголовка <h2> внутри формы */
+    /* Соответствует: margin-bottom: 30px; color: #333; */
+    .admin-login-form h2 {
+        @apply mb-8 text-gray-800; /* Добавил базовый размер и жирность для лучшего вида */
+    }
+
+    /* ---------------------------------------------------- */
+    /* ГРУППА ПОЛЯ (.form-group) */
+    /* Соответствует: margin-bottom: 20px; text-align: left; */
+    .form-group {
+        @apply mb-5 text-left;
+    }
+
+    /* Стиль для <label> */
+    /* Соответствует: display: block; margin-bottom: 5px; font-weight: 600; color: #555; */
+    .form-group label {
+        @apply block mb-1 font-semibold text-gray-700;
+    }
+
+    /* Стиль для <input> */
+    /* Соответствует: width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; */
+    .form-group input {
+        @apply w-full px-4 py-2 border border-gray-300 rounded-md box-border 
+               focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out;
+    }
+
+    /* ---------------------------------------------------- */
+    /* КНОПКА ВХОДА (.login-button) */
+    /* Соответствует: width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background-color 0.3s; */
+    .login-button {
+        @apply w-full py-3 bg-blue-600 text-white font-bold 
+               rounded-md cursor-pointer text-base mt-6 
+               hover:bg-blue-700 transition duration-300 ease-in-out;
+    }
+
+    /* Стиль для :disabled */
+    /* Соответствует: background-color: #a0c9f8; cursor: not-allowed; */
+    .login-button:disabled {
+        @apply bg-blue-400 cursor-not-allowed;
+    }
+
+    /* ---------------------------------------------------- */
+    /* СООБЩЕНИЕ ОБ ОШИБКЕ (.error-message) */
+    /* Соответствует: color: #dc3545; margin-bottom: 20px; font-weight: 500; */
+    .error-message {
+        @apply text-red-600 mb-5 font-medium;
+    }
+}

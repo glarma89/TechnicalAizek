@@ -4,7 +4,7 @@ import { TaskCard } from './components/TaskCard';
 import { TaskFilters } from './components/TaskFilters';
 import { TaskStats } from './components/TaskStats';
 import { AddTaskDialog } from './components/AddTaskDialog';
-import { Task, Project } from './types/task';
+import { Task, Project } from './types/interfaces';
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './components/LanguageSwitcher'
 import { 
@@ -16,7 +16,7 @@ import type {
   AppDispatch } from './store' // ###------------------------------------
 import { 
   fetchTasks, 
-  addTask, 
+  //addTask, 
   //toggleTask, 
   //deleteTask, 
   //editTask 
@@ -57,26 +57,26 @@ export default function App() {
     );
   };
 
-  // const handleAddTask = (newTask: Omit<Task, 'id'>) => { // old --------------
-  //   const task: Task = {
-  //     ...newTask,
-  //     id: Date.now().toString(),
-  //   };
-  //   setTasks([task, ...tasks]);
-  // };
-
-  const handleAddTask = (newTask: Omit<Task, 'id'>) => {
-
+  const handleAddTask = (newTask: Omit<Task, 'id'>) => { // old --------------
     const task: Task = {
       ...newTask,
       id: Date.now().toString(),
     };
-    dispatch(addTask(task));
-    //dispatch(addTask([task, ...tasks]));
-    setIsAddTaskOpen(false);
-
-    //setTasks([task, ...tasks]);
+    setTasks([task, ...tasks]);
   };
+
+  // const handleAddTask = (newTask: Omit<Task, 'id'>) => {
+
+  //   const task: Task = {
+  //     ...newTask,
+  //     id: Date.now().toString(),
+  //   };
+  //   dispatch(addTask(task));
+  //   //dispatch(addTask([task, ...tasks]));
+  //   setIsAddTaskOpen(false);
+
+  //   //setTasks([task, ...tasks]);
+  // };
 
 
 

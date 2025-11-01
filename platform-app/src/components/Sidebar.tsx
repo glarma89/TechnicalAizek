@@ -1,14 +1,10 @@
 import { LayoutDashboard, CheckSquare, Users, Settings, Plus, FolderKanban } from 'lucide-react';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Project } from '../types/task.tsx';
+import { SidebarProps } from '../types/interfaces.ts';
 import { useTranslation } from 'react-i18next';
 
-interface SidebarProps {
-  projects: Project[];
-  selectedProject: string | null;
-  onProjectSelect: (projectId: string | null) => void;
-}
+
 
 export function Sidebar({ projects, selectedProject, onProjectSelect }: SidebarProps) {
   const { t } = useTranslation('common')

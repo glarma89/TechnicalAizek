@@ -11,14 +11,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
-import { Task, TaskPriority, TaskStatus } from '../types/task';
+import { Task, TaskPriority, TaskStatus, AddTaskDialogProps } from '../types/interfaces';
 import { useTranslation } from 'react-i18next';
 
-interface AddTaskDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onAddTask: (task: Omit<Task, 'id'>) => void;
-}
 
 export function AddTaskDialog({ open, onOpenChange, onAddTask }: AddTaskDialogProps) {
   const [title, setTitle] = useState('');
