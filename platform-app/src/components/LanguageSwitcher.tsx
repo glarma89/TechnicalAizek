@@ -1,6 +1,7 @@
 import i18n from '../i18n'
 import type { AppLang } from '../i18n'
 
+
 type LangItem = { code: AppLang; label: string }
 
 const langs: LangItem[] = [

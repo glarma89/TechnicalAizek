@@ -139,15 +139,6 @@ export default function App() {
 
   return (
     <div className="flex h-screen bg-gray-50">
-      <div style={{ padding: 16 }}>
-        <LanguageSwitcher />
-
-        <h1>{t('title')}</h1>
-
-        <p>{t('hello', { name: 'Dasha' })}</p>
-        <p>{t('inbox', { count: 1 })}</p>
-        <p>{t('inbox', { count: 5 })}</p>
-      </div>
       <Sidebar
         projects={initialProjects}
         selectedProject={selectedProject}
@@ -155,6 +146,9 @@ export default function App() {
       />
       
       <main className="flex-1 overflow-auto">
+        <div className="flex justify-end p-4 bg-white border-b border-gray-200">
+          <LanguageSwitcher /> 
+        </div>
         <div className="p-8 max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-6">
