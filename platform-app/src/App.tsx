@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { TaskCard } from './components/TaskCard';
 import { TaskFilters } from './components/TaskFilters';
@@ -7,127 +7,21 @@ import { AddTaskDialog } from './components/AddTaskDialog';
 import { Task, Project } from './types/task';
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './components/LanguageSwitcher'
-import { useDispatch, useSelector } from 'react-redux' // ###------------------------------------
-import type { RootState, AppDispatch } from './store' // ###------------------------------------
-import { fetchTasks, addTask, toggleTask, deleteTask, editTask } from './store/taskSlice' // ###------------------------------------
-
-
-
-
-const initialTasks: Task[] = [
-  {
-    id: '1',
-    title: 'Design new landing page',
-    description: 'Create a modern and responsive landing page design with updated brand colors',
-    status: 'in-progress',
-    priority: 'high',
-    dueDate: '2025-11-05',
-    assignee: {
-      name: 'Sarah Chen',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
-    },
-    tags: ['design', 'ui/ux', 'urgent'],
-    progress: 65,
-  },
-  {
-    id: '2',
-    title: 'Implement user authentication',
-    description: 'Add login and registration functionality with JWT tokens',
-    status: 'in-progress',
-    priority: 'high',
-    dueDate: '2025-11-03',
-    assignee: {
-      name: 'Mike Johnson',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop',
-    },
-    tags: ['backend', 'security'],
-    progress: 40,
-  },
-  {
-    id: '3',
-    title: 'Write API documentation',
-    description: 'Document all API endpoints with examples and response schemas',
-    status: 'review',
-    priority: 'medium',
-    dueDate: '2025-11-10',
-    assignee: {
-      name: 'Emma Davis',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop',
-    },
-    tags: ['documentation', 'api'],
-    progress: 90,
-  },
-  {
-    id: '4',
-    title: 'Set up CI/CD pipeline',
-    description: 'Configure automated testing and deployment with GitHub Actions',
-    status: 'todo',
-    priority: 'medium',
-    dueDate: '2025-11-15',
-    assignee: {
-      name: 'Alex Rivera',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop',
-    },
-    tags: ['devops', 'automation'],
-    progress: 0,
-  },
-  {
-    id: '5',
-    title: 'Create marketing materials',
-    description: 'Design social media posts and email templates for product launch',
-    status: 'completed',
-    priority: 'low',
-    dueDate: '2025-10-28',
-    assignee: {
-      name: 'Lisa Wang',
-      avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop',
-    },
-    tags: ['marketing', 'design'],
-    progress: 100,
-  },
-  {
-    id: '6',
-    title: 'Optimize database queries',
-    description: 'Improve performance of slow queries and add proper indexing',
-    status: 'in-progress',
-    priority: 'high',
-    dueDate: '2025-11-01',
-    assignee: {
-      name: 'Tom Anderson',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
-    },
-    tags: ['backend', 'performance'],
-    progress: 25,
-  },
-  {
-    id: '7',
-    title: 'User testing session',
-    description: 'Conduct usability testing with 10 participants and gather feedback',
-    status: 'todo',
-    priority: 'medium',
-    dueDate: '2025-11-12',
-    assignee: {
-      name: 'Rachel Green',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop',
-    },
-    tags: ['research', 'ux'],
-    progress: 0,
-  },
-  {
-    id: '8',
-    title: 'Mobile app bug fixes',
-    description: 'Fix reported bugs in iOS and Android versions',
-    status: 'in-progress',
-    priority: 'high',
-    dueDate: '2025-11-02',
-    assignee: {
-      name: 'David Kim',
-      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop',
-    },
-    tags: ['mobile', 'bugfix'],
-    progress: 70,
-  },
-];
+import { 
+  useDispatch, 
+  //useSelector 
+} from 'react-redux' // ###------------------------------------
+import type { 
+  //RootState, 
+  AppDispatch } from './store' // ###------------------------------------
+import { 
+  fetchTasks, 
+  addTask, 
+  //toggleTask, 
+  //deleteTask, 
+  //editTask 
+} from './store/taskSlice' // ###------------------------------------
+import { initialTasks } from './components/utils/initialTasks';
 
 export default function App() {
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
@@ -139,8 +33,12 @@ export default function App() {
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const { t } = useTranslation('common')
   const dispatch = useDispatch<AppDispatch>() // ###------------------------------------
-  const { items, loading, error } = useSelector((s: RootState) => s.tasks) // ###------------------------------------
-  const [title, setTitle] = useState('') // ###------------------------------------
+  //const { items, loading, error } = useSelector((s: RootState) => s.tasks) // ###------------------------------------
+  //const [title, setTitle] = useState('') // ###------------------------------------
+
+  useEffect(() => {
+      dispatch(fetchTasks())
+    }, [dispatch])
 
   const initialProjects: Project[] = [
   { id: '1', name: t('websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
@@ -159,13 +57,28 @@ export default function App() {
     );
   };
 
+  // const handleAddTask = (newTask: Omit<Task, 'id'>) => { // old --------------
+  //   const task: Task = {
+  //     ...newTask,
+  //     id: Date.now().toString(),
+  //   };
+  //   setTasks([task, ...tasks]);
+  // };
+
   const handleAddTask = (newTask: Omit<Task, 'id'>) => {
+
     const task: Task = {
       ...newTask,
       id: Date.now().toString(),
     };
-    setTasks([task, ...tasks]);
+    dispatch(addTask(task));
+    //dispatch(addTask([task, ...tasks]));
+    setIsAddTaskOpen(false);
+
+    //setTasks([task, ...tasks]);
   };
+
+
 
   const filteredAndSortedTasks = useMemo(() => {
     let filtered = tasks;

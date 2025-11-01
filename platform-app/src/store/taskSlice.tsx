@@ -1,18 +1,14 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
+//import { Task } from './types/task';
+import { Task, TaskState } from '../types/task';
 
-export interface Task {
-  id: number
-  title: string
-  completed: boolean
-  created_at: string
-}
-
-interface TaskState {
-  items: Task[]
-  loading: boolean
-  error: string | null
-}
+// export interface Task {
+//   id: number
+//   title: string
+//   completed: boolean
+//   created_at: string
+// }
 
 const initialState: TaskState = {
   items: [],
@@ -54,7 +50,7 @@ export const editTask = createAsyncThunk<Task, { id: number; title: string }>(
   }
 )
 
-export const deleteTask = createAsyncThunk<number, { id: number }>(
+export const deleteTask = createAsyncThunk<string, { id: string }>(
   'tasks/delete',
   async ({ id }) => {
     await axios.delete(`${API_URL}/tasks/${id}`)
@@ -97,7 +93,7 @@ const tasksSlice = createSlice({
       })
 
       // Delete
-      .addCase(deleteTask.fulfilled, (state, action: PayloadAction<number>) => {
+      .addCase(deleteTask.fulfilled, (state, action: PayloadAction<string>) => {
         state.items = state.items.filter(t => t.id !== action.payload)
       })
   }

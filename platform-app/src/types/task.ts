@@ -16,6 +16,12 @@ export interface Task {
   progress: number;
 }
 
+export interface TaskState {
+  items: Task[]
+  loading: boolean
+  error: string | null
+}
+
 export interface Project {
   id: string;
   name: string;
