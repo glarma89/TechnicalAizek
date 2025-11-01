@@ -1,20 +1,20 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export interface Todo {
+export interface Task {
   id: number
   title: string
   completed: boolean
   created_at: string
 }
 
-interface TodosState {
-  items: Todo[]
+interface TaskState {
+  items: Task[]
   loading: boolean
   error: string | null
 }
 
-const initialState: TodosState = {
+const initialState: TaskState = {
   items: [],
   loading: false,
   error: null
@@ -22,85 +22,85 @@ const initialState: TodosState = {
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
 
-export const fetchTodos = createAsyncThunk<Todo[]>(
-  'todos/fetch',
+export const fetchTasks = createAsyncThunk<Task[]>(
+  'tasks/fetch',
   async () => {
-    const { data } = await axios.get<Todo[]>(`${API_URL}/todos`)
+    const { data } = await axios.get<Task[]>(`${API_URL}/tasks`)
     return data
   }
 )
 
-export const addTodo = createAsyncThunk<Todo, { title: string }>(
-  'todos/add',
+export const addTask = createAsyncThunk<Task, { title: string }>(
+  'tasks/add',
   async (payload) => {
-    const { data } = await axios.post<Todo>(`${API_URL}/todos`, payload)
+    const { data } = await axios.post<Task>(`${API_URL}/tasks`, payload)
     return data
   }
 )
 
-export const toggleTodo = createAsyncThunk<Todo, { id: number; completed: boolean }>(
-  'todos/toggle',
+export const toggleTask = createAsyncThunk<Task, { id: number; completed: boolean }>(
+  'tasks/toggle',
   async ({ id, completed }) => {
-    const { data } = await axios.patch<Todo>(`${API_URL}/todos/${id}`, { completed })
+    const { data } = await axios.patch<Task>(`${API_URL}/tasks/${id}`, { completed })
     return data
   }
 )
 
-export const editTodo = createAsyncThunk<Todo, { id: number; title: string }>(
-  'todos/edit',
+export const editTask = createAsyncThunk<Task, { id: number; title: string }>(
+  'tasks/edit',
   async ({ id, title }) => {
-    const { data } = await axios.patch<Todo>(`${API_URL}/todos/${id}`, { title })
+    const { data } = await axios.patch<Task>(`${API_URL}/tasks/${id}`, { title })
     return data
   }
 )
 
-export const deleteTodo = createAsyncThunk<number, { id: number }>(
-  'todos/delete',
+export const deleteTask = createAsyncThunk<number, { id: number }>(
+  'tasks/delete',
   async ({ id }) => {
-    await axios.delete(`${API_URL}/todos/${id}`)
+    await axios.delete(`${API_URL}/tasks/${id}`)
     return id
   }
 )
 
-const todosSlice = createSlice({
-  name: 'todos',
+const tasksSlice = createSlice({
+  name: 'tasks',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       // Fetch
-      .addCase(fetchTodos.pending, (state) => { state.loading = true; state.error = null })
-      .addCase(fetchTodos.fulfilled, (state, action: PayloadAction<Todo[]>) => {
+      .addCase(fetchTasks.pending, (state) => { state.loading = true; state.error = null })
+      .addCase(fetchTasks.fulfilled, (state, action: PayloadAction<Task[]>) => {
         state.loading = false
         state.items = action.payload
       })
-      .addCase(fetchTodos.rejected, (state, action) => {
+      .addCase(fetchTasks.rejected, (state, action) => {
         state.loading = false
         state.error = action.error.message || 'Failed to fetch'
       })
 
       // Add
-      .addCase(addTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+      .addCase(addTask.fulfilled, (state, action: PayloadAction<Task>) => {
         state.items.unshift(action.payload)
       })
 
       // Toggle
-      .addCase(toggleTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+      .addCase(toggleTask.fulfilled, (state, action: PayloadAction<Task>) => {
         const idx = state.items.findIndex(t => t.id === action.payload.id)
         if (idx >= 0) state.items[idx] = action.payload
       })
 
       // Edit
-      .addCase(editTodo.fulfilled, (state, action: PayloadAction<Todo>) => {
+      .addCase(editTask.fulfilled, (state, action: PayloadAction<Task>) => {
         const idx = state.items.findIndex(t => t.id === action.payload.id)
         if (idx >= 0) state.items[idx] = action.payload
       })
 
       // Delete
-      .addCase(deleteTodo.fulfilled, (state, action: PayloadAction<number>) => {
+      .addCase(deleteTask.fulfilled, (state, action: PayloadAction<number>) => {
         state.items = state.items.filter(t => t.id !== action.payload)
       })
   }
 })
 
-export default todosSlice.reducer
+export default tasksSlice.reducer

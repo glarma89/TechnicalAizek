@@ -7,7 +7,9 @@ import { AddTaskDialog } from './components/AddTaskDialog';
 import { Task, Project } from './types/task';
 import { useTranslation } from 'react-i18next'
 import LanguageSwitcher from './components/LanguageSwitcher'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux' // ###------------------------------------
+import type { RootState, AppDispatch } from './store' // ###------------------------------------
+import { fetchTasks, addTask, toggleTask, deleteTask, editTask } from './store/taskSlice' // ###------------------------------------
 
 
 
@@ -136,7 +138,9 @@ export default function App() {
   const [sortBy, setSortBy] = useState('dueDate');
   const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
   const { t } = useTranslation('common')
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>() // ###------------------------------------
+  const { items, loading, error } = useSelector((s: RootState) => s.tasks) // ###------------------------------------
+  const [title, setTitle] = useState('') // ###------------------------------------
 
   const initialProjects: Project[] = [
   { id: '1', name: t('websiteRedesign'), color: 'bg-purple-500', taskCount: 12 },
